@@ -149,9 +149,27 @@ def received_affirm():
 @ask.intent("deny")
 def received_deny():
 
-    msg = render_template('utter_goodbye')
+
+    msg = render_template('utter_ask_again')
 
     return statement(msg)
+
+ask.intent("ask_again",
+            {
+                'answer': 'answer'
+            }
+            )
+def ask_again(answer):
+    if answer == "yes":
+        msg = render_template('utter_ask_book')
+        return statement(msg)
+    else:
+        msg = render_template('utter_goodbye')
+        return statement(msg)
+
+
+
+
 
 
 if __name__ == '__main__':
