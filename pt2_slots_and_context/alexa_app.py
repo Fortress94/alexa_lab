@@ -154,13 +154,11 @@ def received_deny():
 
     return statement(msg)
 
-ask.intent("ask_again",
-            {
-                'answer': 'answer'
-            }
-            )
+ask.intent("ask_again")
 def ask_again(answer):
-    if answer == "yes":
+    update_dialog_history(session, request)
+    print(request)
+    if request == "yes":
         msg = render_template('utter_ask_book')
         return statement(msg)
     else:
